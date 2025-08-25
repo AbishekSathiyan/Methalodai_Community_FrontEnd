@@ -21,12 +21,11 @@ import ProductLaunch from "./components/ProductLanch/Launch";
 export default function AppRoutes() {
   return (
     <Routes>
-      {/* Public Routes 
       <Route
         path="/"
         element={
           <PublicRoute>
-            <Home />
+            <ProductLaunch />
           </PublicRoute>
         }
       />
@@ -34,7 +33,7 @@ export default function AppRoutes() {
         path="/home"
         element={
           <PublicRoute>
-            <Home />
+            <ProductLaunch />
           </PublicRoute>
         }
       />
@@ -54,8 +53,6 @@ export default function AppRoutes() {
           </PublicRoute>
         }
       />
-
-      {/* ✅ Fixed: use query params instead of :token 
       <Route
         path="/verify-email"
         element={
@@ -90,7 +87,6 @@ export default function AppRoutes() {
         }
       />
 
-      {/* Admin Login (Public) 
       <Route
         path="/admin/login"
         element={
@@ -100,7 +96,6 @@ export default function AppRoutes() {
         }
       />
 
-      {/* Private Routes
       <Route
         path="/profile"
         element={
@@ -126,7 +121,6 @@ export default function AppRoutes() {
         }
       />
 
-      {/* Admin Dashboard Route - Protected with AdminRoute 
       <Route
         path="/admin"
         element={
@@ -144,9 +138,9 @@ export default function AppRoutes() {
           </PublicRoute>
         }
       />
-      
+
       {/* 404 */}
-      {/*<Route path="*" element={<NotFound />} /> */}
+      <Route path="*" element={<NotFound />} />
 
       <Route path="*" element={<ProductLaunch />} />
     </Routes>

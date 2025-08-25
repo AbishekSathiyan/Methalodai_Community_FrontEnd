@@ -4,7 +4,7 @@ import axios from "axios";
 import { API } from "../../config/api";
 
 // Import the default image correctly
-import DefaultProfileImg from "../../assets/Kamarajar (3).jpeg";
+import DefaultProfileImg from "../../assets/Kamarajar(3).jpeg";
 
 const ProfileHeader = () => {
   const [profile, setProfile] = useState(null);

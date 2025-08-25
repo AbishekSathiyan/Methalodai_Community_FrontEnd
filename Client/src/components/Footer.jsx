@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { FiHome, FiPlus, FiSearch, FiMessageSquare, FiX } from "react-icons/fi";
 import { auth } from "../config/firebase";
 import { getIdToken } from "firebase/auth";
-import kamarajarImg from "../assets/kamarajar(3).jpeg";
+import KamarajarImg from "../assets/Kamarajar(3).jpeg";
 
 // Central API helper
 const API = {
