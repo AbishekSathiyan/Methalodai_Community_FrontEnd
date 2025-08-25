@@ -1,9 +1,19 @@
 import React, { useState, useEffect } from "react";
-import { FiMenu, FiX, FiUser, FiLogOut, FiHome, FiInfo, FiBell, FiBook, FiMail } from "react-icons/fi";
+import {
+  FiMenu,
+  FiX,
+  FiUser,
+  FiLogOut,
+  FiHome,
+  FiInfo,
+  FiBell,
+  FiBook,
+  FiMail,
+} from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase";
 import { getIdToken, signOut } from "firebase/auth";
-import Kamaraj from "../assets/kamarajar (3).jpeg";
+import Kamaraj from "../assets/kamarajar(3).jpeg";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -20,13 +30,15 @@ const Header = () => {
     { name: "About", icon: FiInfo },
     { name: "Announcements", icon: FiBell },
     { name: "Courses", icon: FiBook },
-    { name: "Contact", icon: FiMail }
+    { name: "Contact", icon: FiMail },
   ];
 
   const getPhotoUrl = (photoURL) => {
     if (!photoURL) return Kamaraj;
     if (photoURL.startsWith("http")) return photoURL;
-    return `${import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"}/uploads/${photoURL}`;
+    return `${
+      import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"
+    }/uploads/${photoURL}`;
   };
 
   const fetchProfile = async () => {
@@ -45,7 +57,9 @@ const Header = () => {
       const token = await getIdToken(user, true);
 
       const res = await fetch(
-        `${import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"}/api/auth/profile`,
+        `${
+          import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"
+        }/api/auth/profile`,
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -65,13 +79,18 @@ const Header = () => {
 
       const data = await res.json();
       const userProfile = data.user || data.profile || data;
-      setUserName(userProfile.name || userProfile.displayName || user.displayName || "User");
+      setUserName(
+        userProfile.name ||
+          userProfile.displayName ||
+          user.displayName ||
+          "User"
+      );
       setUserBio(userProfile.bio || "");
-      
+
       // Set profile image only if it exists, otherwise use Kamaraj
       if (userProfile.photoURL) {
         const imgUrl = getPhotoUrl(userProfile.photoURL);
-        
+
         // Verify the image actually loads
         const img = new Image();
         img.onload = () => {
@@ -86,7 +105,6 @@ const Header = () => {
       } else {
         setProfileImage(Kamaraj);
       }
-
     } catch (err) {
       console.error("Profile fetch error:", err);
       setUserName(auth.currentUser?.displayName || "User");
@@ -228,7 +246,11 @@ const Header = () => {
             className="p-2 rounded-md md:hidden text-white hover:bg-white/10 transition-colors duration-200 relative z-60"
             aria-label="Toggle menu"
           >
-            {mobileMenuOpen ? <FiX size={24} className="text-white/90" /> : <FiMenu size={24} className="text-white/90" />}
+            {mobileMenuOpen ? (
+              <FiX size={24} className="text-white/90" />
+            ) : (
+              <FiMenu size={24} className="text-white/90" />
+            )}
           </button>
 
           {/* Mobile Menu */}
@@ -248,9 +270,13 @@ const Header = () => {
                       }}
                     />
                     <div className="flex flex-col">
-                      <span className="font-semibold text-white truncate">{userName}</span>
+                      <span className="font-semibold text-white truncate">
+                        {userName}
+                      </span>
                       {userBio && (
-                        <span className="text-sm text-white/70 truncate max-w-[150px]">{userBio}</span>
+                        <span className="text-sm text-white/70 truncate max-w-[150px]">
+                          {userBio}
+                        </span>
                       )}
                     </div>
                   </div>
@@ -315,7 +341,7 @@ const Header = () => {
 
       {/* Overlay */}
       {mobileMenuOpen && (
-        <div 
+        <div
           className="fixed inset-0 bg-black/20 z-40 md:hidden"
           onClick={() => setMobileMenuOpen(false)}
         />

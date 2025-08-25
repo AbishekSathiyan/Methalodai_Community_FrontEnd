@@ -26,7 +26,7 @@ import {
 import { motion, useInView } from "framer-motion";
 
 // Import images
-import KamarajarImg from "../../assets/Kamarajar (3).jpeg";
+import KamarajarImg from "../../assets/Kamarajar(3).jpeg";
 import BabyMuruganImg from "../../assets/BabyMurugan.jpg";
 import MethalodaiCommunityImg from "../../assets/Methalodai.jpg"; // Add this image
 
