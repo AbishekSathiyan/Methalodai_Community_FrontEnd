@@ -8,7 +8,7 @@ import CommunityInitiatives from "./CommunityInitiatives";
 import CulturalSignificance from "./CulturalSignificance";
 import MethalodaiHeritage from "./MethalodaiHeritage";
 import NadarFlagInspired from "./NadarFlagInspired";
-import NewsletterSignup from "./NewsletterSignup";
+import NewsletterSignup from "./NewsLetterSignup";
 import SocialLinks from "./SocialLinks";
 
 const ProductLaunch = () => {
