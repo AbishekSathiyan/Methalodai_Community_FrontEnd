@@ -13,13 +13,13 @@ import {
 import { useNavigate } from "react-router-dom";
 import { auth } from "../config/firebase";
 import { getIdToken, signOut } from "firebase/auth";
-import Kamaraj from "../assets/kamarajar(3).jpeg";
+import KamarajarImg from "../assets/Kamarajar(3).jpeg";
 
 const Header = () => {
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [loggingOut, setLoggingOut] = useState(false);
-  const [profileImage, setProfileImage] = useState(Kamaraj);
+  const [profileImage, setProfileImage] = useState(KamarajarImg);
   const [userName, setUserName] = useState("Guest");
   const [userBio, setUserBio] = useState("");
   const [loadingProfile, setLoadingProfile] = useState(true);
@@ -34,7 +34,7 @@ const Header = () => {
   ];
 
   const getPhotoUrl = (photoURL) => {
-    if (!photoURL) return Kamaraj;
+    if (!photoURL) return KamarajarImg;
     if (photoURL.startsWith("http")) return photoURL;
     return `${
       import.meta.env.VITE_API_BASE_URL || "http://localhost:5000"
@@ -48,7 +48,7 @@ const Header = () => {
       const user = auth.currentUser;
       if (!user) {
         setUserName("Guest");
-        setProfileImage(Kamaraj);
+        setProfileImage(KamarajarImg);
         setUserBio("");
         setLoadingProfile(false);
         return;
@@ -71,7 +71,7 @@ const Header = () => {
       if (!res.ok) {
         console.error("Profile fetch failed:", await res.text());
         setUserName(user.displayName || "User");
-        setProfileImage(Kamaraj);
+        setProfileImage(KamarajarImg);
         setUserBio("");
         setProfileError(true);
         return;
@@ -87,7 +87,7 @@ const Header = () => {
       );
       setUserBio(userProfile.bio || "");
 
-      // Set profile image only if it exists, otherwise use Kamaraj
+      // Set profile image only if it exists, otherwise use KamarajarImg
       if (userProfile.photoURL) {
         const imgUrl = getPhotoUrl(userProfile.photoURL);
 
@@ -98,17 +98,17 @@ const Header = () => {
           setProfileError(false);
         };
         img.onerror = () => {
-          setProfileImage(Kamaraj);
+          setProfileImage(KamarajarImg);
           setProfileError(true);
         };
         img.src = imgUrl;
       } else {
-        setProfileImage(Kamaraj);
+        setProfileImage(KamarajarImg);
       }
     } catch (err) {
       console.error("Profile fetch error:", err);
       setUserName(auth.currentUser?.displayName || "User");
-      setProfileImage(Kamaraj);
+      setProfileImage(KamarajarImgarImg);
       setUserBio("");
       setProfileError(true);
     } finally {
@@ -123,7 +123,7 @@ const Header = () => {
         fetchProfile();
       } else {
         setUserName("Guest");
-        setProfileImage(Kamaraj);
+        setProfileImage(KamarajarImg);
         setUserBio("");
         setLoadingProfile(false);
       }
@@ -136,7 +136,7 @@ const Header = () => {
       setLoggingOut(true);
       await signOut(auth);
       setUserName("Guest");
-      setProfileImage(Kamaraj);
+      setProfileImage(KamarajarImg);
       setUserBio("");
       navigate("/", { replace: true });
     } catch (err) {
@@ -172,12 +172,12 @@ const Header = () => {
           >
             <div className="flex items-center">
               <img
-                src={profileError ? Kamaraj : profileImage}
+                src={profileError ? KamarajarImg : profileImage}
                 alt="Profile"
                 className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover mr-3 border-2 border-white/50 group-hover:border-white/80 transition-all duration-200"
                 onError={(e) => {
-                  // If image fails to load, use Kamaraj fallback
-                  e.target.src = Kamaraj;
+                  // If image fails to load, use KamarajarImgarImg fallback
+                  e.target.src = KamarajarImgarImg;
                   setProfileError(true);
                 }}
               />
@@ -261,11 +261,11 @@ const Header = () => {
                 {userName !== "Guest" && (
                   <div className="flex items-center px-3 py-3 space-x-3 border-b border-white/10 pb-3">
                     <img
-                      src={profileError ? Kamaraj : profileImage}
+                      src={profileError ? KamarajarImgarImg : profileImage}
                       alt="Profile"
                       className="h-10 w-10 rounded-full object-cover border-2 border-white/50"
                       onError={(e) => {
-                        e.target.src = Kamaraj;
+                        e.target.src = KamarajarImg;
                         setProfileError(true);
                       }}
                     />
