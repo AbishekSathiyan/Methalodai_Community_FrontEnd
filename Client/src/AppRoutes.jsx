@@ -129,8 +129,6 @@ export default function AppRoutes() {
       
       <Route path="*" element={<NotFound />} />
 */}
-      <Route path="/" element={<ProductLaunch />} />
-      <Route path="*" element={<ProductLaunch />} />
     </Routes>
   );
 }
