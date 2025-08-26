@@ -21,6 +21,7 @@ import ProductLaunch from "./components/ProductLanch/Launch";
 export default function AppRoutes() {
   return (
     <Routes>
+      {/* 404
       <Route
         path="/"
         element={
@@ -61,7 +62,6 @@ export default function AppRoutes() {
           </PublicRoute>
         }
       />
-
       <Route
         path="/notices"
         element={
@@ -86,7 +86,6 @@ export default function AppRoutes() {
           </PublicRoute>
         }
       />
-
       <Route
         path="/admin/login"
         element={
@@ -95,7 +94,6 @@ export default function AppRoutes() {
           </PublicRoute>
         }
       />
-
       <Route
         path="/profile"
         element={
@@ -120,7 +118,6 @@ export default function AppRoutes() {
           </PrivateRoute>
         }
       />
-
       <Route
         path="/admin"
         element={
@@ -129,11 +126,10 @@ export default function AppRoutes() {
           </AdminRoute>
         }
       />
-
-      {/* 404 */}
+      
       <Route path="*" element={<NotFound />} />
-
-      {/*<Route path="*" element={<ProductLaunch />} /> */}
+*/}
+      <Route path="*" element={<ProductLaunch />} />
     </Routes>
   );
 }
