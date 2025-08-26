@@ -15,36 +15,38 @@ const ProductLaunch = () => {
   return (
     <div className="min-h-screen w-full bg-gradient-to-b from-blue-200 via-emerald-100 to-blue-100 font-poppins flex flex-col">
       {/* Main content */}
-      <div className="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8 flex-grow">
+      <div className="max-w-6xl mx-auto py-8 md:py-12 px-4 sm:px-6 lg:px-8 flex-grow w-full">
         <motion.header
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7 }}
-          className="text-center mb-16"
+          className="text-center mb-12 md:mb-16"
         >
-          <h1 className="text-5xl font-bold text-blue-800 mb-4 font-poppins">
+          <h1 className="text-4xl sm:text-5xl font-bold text-blue-800 mb-4 font-poppins">
             Methalodai Community
           </h1>
-          <p className="text-xl text-emerald-700 font-poppins">
+          <p className="text-lg sm:text-xl text-emerald-700 font-poppins">
             Community Platform Launch - August 29, 2025
           </p>
         </motion.header>
 
-        <div className="relative mb-16">
+        <div className="relative mb-12 md:mb-16">
           <HeroSection />
         </div>
 
-        <div className="mb-16">
+        <div className="mb-12 md:mb-16">
           <CountdownTimer />
         </div>
 
-        <KamarajarTribute />
-        <CommunityValues />
-        <CommunityInitiatives />
-        <CulturalSignificance />
-        <MethalodaiHeritage />
-        <NadarFlagInspired />
-        <NewsletterSignup />
+        <div className="space-y-16 md:space-y-20">
+          <KamarajarTribute />
+          <CommunityValues />
+          <CommunityInitiatives />
+          <CulturalSignificance />
+          <MethalodaiHeritage />
+          <NadarFlagInspired />
+          <NewsletterSignup />
+        </div>
       </div>
 
       {/* Footer with SocialLinks */}
@@ -53,14 +55,13 @@ const ProductLaunch = () => {
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
         viewport={{ once: true }}
-        className="text-center text-gray-700 pt-4 border-t border-gray-300 text-sm"
+        className="text-center text-gray-700 pt-8 pb-4 border-t border-gray-300 text-sm mt-8 md:mt-12"
       >
-        <p className="mb-2">
+        <p className="mb-3">
           © {new Date().getFullYear()} Methalodai Community. All rights
           reserved.
         </p>
         <SocialLinks />
-        <div className="mt-4"></div>
       </motion.footer>
     </div>
   );
