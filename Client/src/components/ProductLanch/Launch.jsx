@@ -25,7 +25,7 @@ const ProductLaunch = () => {
           <h1 className="text-4xl sm:text-5xl font-bold text-blue-800 mb-4 font-poppins">
             Methalodai Community
           </h1>
-          <p className="text-lg sm:text-xl text-emerald-700 font-poppins">
+          <p className="text-sm sm:text-xl text-emerald-700 font-poppins">
             Community Platform Launch - August 29, 2025
           </p>
         </motion.header>
