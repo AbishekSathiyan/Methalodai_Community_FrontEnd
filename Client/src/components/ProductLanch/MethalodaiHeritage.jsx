@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
 import {
   FaQuoteLeft,
@@ -10,6 +10,8 @@ import {
   FaWhatsapp,
   FaLinkedin,
   FaGithub,
+  FaPauseCircle,
+  FaPlayCircle,
 } from "react-icons/fa";
 import MineImg from "../../assets/Abishek S.jpeg";
 
@@ -26,6 +28,39 @@ const MethalodaiHeritage = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isFlipped, setIsFlipped] = useState(false);
+  const [autoRotate, setAutoRotate] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Auto-rotate effect - every 3 seconds
+  useEffect(() => {
+    let rotationInterval;
+    if (autoRotate && !isHovered) {
+      rotationInterval = setInterval(() => {
+        setIsFlipped((prev) => !prev);
+      }, 3000); // Rotate every 3 seconds
+    }
+
+    return () => {
+      if (rotationInterval) clearInterval(rotationInterval);
+    };
+  }, [autoRotate, isHovered]); // Added isHovered dependency
+
+  const handleCardClick = () => {
+    setAutoRotate(false); // Stop auto-rotation when clicked
+    setIsFlipped((prev) => !prev); // Toggle flip state
+  };
+
+  const toggleAutoRotate = () => {
+    setAutoRotate((prev) => !prev);
+  };
+
+  const handleMouseEnter = () => {
+    setIsHovered(true);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovered(false);
+  };
 
   return (
     <motion.div
@@ -48,9 +83,10 @@ const MethalodaiHeritage = () => {
           transition={{ duration: 0.7 }}
         >
           <div
-            className="w-72 h-96 perspective-1000 cursor-pointer"
-            onMouseEnter={() => setIsFlipped(true)}
-            onMouseLeave={() => setIsFlipped(false)}
+            className="w-96 h-[550px] perspective-1000 cursor-pointer"
+            onClick={handleCardClick}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
           >
             <motion.div
               className="relative w-full h-full preserve-3d transition-all duration-500"
@@ -76,15 +112,29 @@ const MethalodaiHeritage = () => {
                         Established 2025
                       </p>
                       <p className="text-xs mt-2 opacity-80 bg-gradient-to-r from-blue-200 to-green-200 bg-clip-text text-transparent">
-                        Hover to connect with me
+                        Click to {isFlipped ? "see front" : "connect with me"}
                       </p>
+                      {autoRotate && (
+                        <div className="flex items-center mt-1">
+                          <span className="text-xs bg-gradient-to-r from-blue-200 to-green-200 bg-clip-text text-transparent flex items-center">
+                            <span
+                              className={`h-2 w-2 rounded-full ${
+                                isHovered ? "bg-gray-400" : "bg-emerald-400"
+                              } mr-1 ${isHovered ? "" : "animate-pulse"}`}
+                            ></span>
+                            {isHovered
+                              ? "Rotation paused"
+                              : "Auto-rotating every 3s"}
+                          </span>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </div>
               </div>
 
               {/* Back of the card - Your details */}
-              <div className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-gradient-to-br from-blue-600 to-emerald-600 text-white rotate-y-180 p-6 flex flex-col justify-center">
+              <div className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-gradient-to-br from-blue-600 to-emerald-600 text-white rotate-y-180 p-6 flex flex-col">
                 <div className="text-center mb-4">
                   <h3 className="text-2xl font-bold font-poppins mb-2">
                     Abishek S
@@ -94,14 +144,14 @@ const MethalodaiHeritage = () => {
                   </p>
                 </div>
 
-                <div className="space-y-3 mb-4">
-                  <div className="flex items-center">
-                    <FaUser className="text-blue-200 mr-3 min-w-[16px]" />
-                    <span className="text-sm">Methalodai Community Admin</span>
+                <div className="space-y-3 mb-4 flex-grow">
+                  <div className="flex items-start">
+                    <FaUser className="text-blue-200 mr-3 min-w-[16px] mt-1" />
+                    <span className="text-sm">S/O Sathiyan & Kalaivani</span>
                   </div>
 
-                  <div className="flex items-center">
-                    <FaMapMarkerAlt className="text-blue-200 mr-3 min-w-[16px]" />
+                  <div className="flex items-start">
+                    <FaMapMarkerAlt className="text-blue-200 mr-3 min-w-[16px] mt-1" />
                     <span className="text-sm">
                       Methalodai, Ramanathapuram, Tamil Nadu
                     </span>
@@ -110,6 +160,40 @@ const MethalodaiHeritage = () => {
                   <div className="flex items-center">
                     <FaPhone className="text-blue-200 mr-3 min-w-[16px]" />
                     <span className="text-sm">+91 7092085864</span>
+                  </div>
+
+                  <div className="flex items-start">
+                    <FaEnvelope className="text-blue-200 mr-3 min-w-[16px] mt-1" />
+                    <span className="text-sm break-all">
+                      abishek.sathiyan.2002@gmail.com
+                    </span>
+                  </div>
+
+                  <div className="pt-2">
+                    <p className="text-sm text-blue-200 mb-1">Skills:</p>
+                    <div className="flex flex-wrap gap-1">
+                      <span className="text-xs bg-white/20 px-2 py-1 rounded">
+                        React
+                      </span>
+                      <span className="text-xs bg-white/20 px-2 py-1 rounded">
+                        JavaScript
+                      </span>
+                      <span className="text-xs bg-white/20 px-2 py-1 rounded">
+                        Node.js
+                      </span>
+                      <span className="text-xs bg-white/20 px-2 py-1 rounded">
+                        MongoDB
+                      </span>
+                      <span className="text-xs bg-white/20 px-2 py-1 rounded">
+                        Express
+                      </span>
+                      <span className="text-xs bg-white/20 px-2 py-1 rounded">
+                        Tailwind CSS
+                      </span>
+                      <span className="text-xs bg-white/20 px-2 py-1 rounded">
+                        Python
+                      </span>
+                    </div>
                   </div>
                 </div>
 
@@ -145,20 +229,39 @@ const MethalodaiHeritage = () => {
                 </a>
 
                 {/* Social links */}
-                <div className="flex justify-center space-x-3">
+                <div className="flex justify-center space-x-4 mb-2">
                   <a
                     href="https://www.linkedin.com/in/abishek04"
-                    className="text-blue-200 hover:text-white transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-200 hover:text-linkedin transition-colors"
+                    title="LinkedIn"
                   >
-                    <FaLinkedin size={18} />
+                    <FaLinkedin size={20} />
                   </a>
                   <a
                     href="https://github.com/AbishekSathiyan"
-                    className="text-blue-200 hover:text-white transition-colors"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-200 hover:text-gray-200 transition-colors"
+                    title="GitHub"
                   >
-                    <FaGithub size={18} />
+                    <FaGithub size={20} />
+                  </a>
+                  <a
+                    href="https://wa.me/917092085864"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-200 hover:text-whatsapp transition-colors"
+                    title="WhatsApp"
+                  >
+                    <FaWhatsapp size={20} />
                   </a>
                 </div>
+
+                <p className="text-xs text-center text-blue-200 mt-2">
+                  Click card to flip back
+                </p>
               </div>
             </motion.div>
           </div>
@@ -199,6 +302,33 @@ const MethalodaiHeritage = () => {
               - Methalodai Community
             </p>
           </motion.div>
+
+          {/* Auto-rotation control */}
+          <div className="mt-6 flex items-center">
+            <button
+              onClick={toggleAutoRotate}
+              className={`flex items-center py-2 px-4 rounded-lg text-sm transition-colors ${
+                autoRotate
+                  ? "bg-blue-500 hover:bg-blue-600 text-white"
+                  : "bg-gray-300 hover:bg-gray-400 text-gray-700"
+              }`}
+            >
+              {autoRotate ? (
+                <>
+                  <FaPauseCircle className="mr-2" />
+                  <span>Pause Auto Rotation</span>
+                </>
+              ) : (
+                <>
+                  <FaPlayCircle className="mr-2" />
+                  <span>Resume Auto Rotation</span>
+                </>
+              )}
+            </button>
+            <span className="ml-4 text-sm text-gray-600">
+              Card rotates every 3 seconds {isHovered && "(paused on hover)"}
+            </span>
+          </div>
         </motion.div>
       </div>
 
@@ -214,6 +344,12 @@ const MethalodaiHeritage = () => {
         }
         .rotate-y-180 {
           transform: rotateY(180deg);
+        }
+        .hover\:text-linkedin:hover {
+          color: #0a66c2 !important;
+        }
+        .hover\:text-whatsapp:hover {
+          color: #25d366 !important;
         }
       `}</style>
     </motion.div>
