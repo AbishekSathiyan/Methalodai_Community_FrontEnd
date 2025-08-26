@@ -30,7 +30,7 @@ const SocialLinks = () => {
       whileInView={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
       viewport={{ once: true }}
-      className="flex justify-center space-x-6 mt-6"
+      className="flex justify-center space-x-4" // smaller spacing
     >
       {socials.map((social, index) => (
         <motion.a
@@ -38,9 +38,9 @@ const SocialLinks = () => {
           href={social.url}
           target="_blank"
           rel="noopener noreferrer"
-          className={`text-gray-500 ${social.color} transition-colors duration-300 bg-white p-3 rounded-full shadow-md`}
+          className={`text-gray-500 ${social.color} transition-colors duration-300 bg-white p-2 rounded-full shadow-md`}
           aria-label={social.name}
-          whileHover={{ scale: 1.2, y: -5 }}
+          whileHover={{ scale: 1.15, y: -3 }} // subtle hover
           whileTap={{ scale: 0.9 }}
         >
           {social.icon}

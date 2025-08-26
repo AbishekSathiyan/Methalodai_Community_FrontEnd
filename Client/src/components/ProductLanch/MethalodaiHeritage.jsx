@@ -10,8 +10,6 @@ import {
   FaWhatsapp,
   FaLinkedin,
   FaGithub,
-  FaPauseCircle,
-  FaPlayCircle,
 } from "react-icons/fa";
 import MineImg from "../../assets/Abishek S.jpeg";
 
@@ -29,12 +27,11 @@ const MethalodaiHeritage = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [isFlipped, setIsFlipped] = useState(false);
   const [autoRotate, setAutoRotate] = useState(true);
-  const [isHovered, setIsHovered] = useState(false);
 
   // Auto-rotate effect - every 3 seconds
   useEffect(() => {
     let rotationInterval;
-    if (autoRotate && !isHovered) {
+    if (autoRotate) {
       rotationInterval = setInterval(() => {
         setIsFlipped((prev) => !prev);
       }, 3000); // Rotate every 3 seconds
@@ -43,23 +40,19 @@ const MethalodaiHeritage = () => {
     return () => {
       if (rotationInterval) clearInterval(rotationInterval);
     };
-  }, [autoRotate, isHovered]); // Added isHovered dependency
+  }, [autoRotate]);
 
   const handleCardClick = () => {
     setAutoRotate(false); // Stop auto-rotation when clicked
     setIsFlipped((prev) => !prev); // Toggle flip state
   };
 
-  const toggleAutoRotate = () => {
-    setAutoRotate((prev) => !prev);
-  };
-
   const handleMouseEnter = () => {
-    setIsHovered(true);
+    setAutoRotate(false); // Pause auto-rotation on hover
   };
 
   const handleMouseLeave = () => {
-    setIsHovered(false);
+    setAutoRotate(true); // Resume auto-rotation when not hovering
   };
 
   return (
@@ -114,20 +107,18 @@ const MethalodaiHeritage = () => {
                       <p className="text-xs mt-2 opacity-80 bg-gradient-to-r from-blue-200 to-green-200 bg-clip-text text-transparent">
                         Click to {isFlipped ? "see front" : "connect with me"}
                       </p>
-                      {autoRotate && (
-                        <div className="flex items-center mt-1">
-                          <span className="text-xs bg-gradient-to-r from-blue-200 to-green-200 bg-clip-text text-transparent flex items-center">
-                            <span
-                              className={`h-2 w-2 rounded-full ${
-                                isHovered ? "bg-gray-400" : "bg-emerald-400"
-                              } mr-1 ${isHovered ? "" : "animate-pulse"}`}
-                            ></span>
-                            {isHovered
-                              ? "Rotation paused"
-                              : "Auto-rotating every 3s"}
-                          </span>
-                        </div>
-                      )}
+                      <div className="flex items-center mt-1">
+                        <span className="text-xs bg-gradient-to-r from-blue-200 to-green-200 bg-clip-text text-transparent flex items-center">
+                          <span
+                            className={`h-2 w-2 rounded-full ${
+                              !autoRotate ? "bg-gray-400" : "bg-emerald-400"
+                            } mr-1 ${autoRotate ? "animate-pulse" : ""}`}
+                          ></span>
+                          {autoRotate
+                            ? "Auto-rotating every 3s"
+                            : "Rotation paused (hovering)"}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -303,32 +294,7 @@ const MethalodaiHeritage = () => {
             </p>
           </motion.div>
 
-          {/* Auto-rotation control */}
-          <div className="mt-6 flex items-center">
-            <button
-              onClick={toggleAutoRotate}
-              className={`flex items-center py-2 px-4 rounded-lg text-sm transition-colors ${
-                autoRotate
-                  ? "bg-blue-500 hover:bg-blue-600 text-white"
-                  : "bg-gray-300 hover:bg-gray-400 text-gray-700"
-              }`}
-            >
-              {autoRotate ? (
-                <>
-                  <FaPauseCircle className="mr-2" />
-                  <span>Pause Auto Rotation</span>
-                </>
-              ) : (
-                <>
-                  <FaPlayCircle className="mr-2" />
-                  <span>Resume Auto Rotation</span>
-                </>
-              )}
-            </button>
-            <span className="ml-4 text-sm text-gray-600">
-              Card rotates every 3 seconds {isHovered && "(paused on hover)"}
-            </span>
-          </div>
+          
         </motion.div>
       </div>
 

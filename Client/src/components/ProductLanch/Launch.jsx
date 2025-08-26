@@ -13,9 +13,9 @@ import SocialLinks from "./SocialLinks";
 
 const ProductLaunch = () => {
   return (
-    // ✅ Enhanced background with richer colors
-    <div className="min-h-screen w-full bg-gradient-to-b from-blue-200 via-emerald-100 to-blue-100 font-poppins">
-      <div className="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8">
+    <div className="min-h-screen w-full bg-gradient-to-b from-blue-200 via-emerald-100 to-blue-100 font-poppins flex flex-col">
+      {/* Main content */}
+      <div className="max-w-6xl mx-auto py-12 px-4 sm:px-6 lg:px-8 flex-grow">
         <motion.header
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -39,30 +39,29 @@ const ProductLaunch = () => {
         </div>
 
         <KamarajarTribute />
-
         <CommunityValues />
-
         <CommunityInitiatives />
-
         <CulturalSignificance />
-
         <MethalodaiHeritage />
-
         <NadarFlagInspired />
-
         <NewsletterSignup />
-
-        <motion.footer
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          viewport={{ once: true }}
-          className="text-center text-gray-700 mt-16 pt-8 border-t border-gray-300"
-        >
-          <p>© 2025 Methalodai Community. All rights reserved.</p>
-          <SocialLinks />
-        </motion.footer>
       </div>
+
+      {/* Footer with SocialLinks */}
+      <motion.footer
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.5 }}
+        viewport={{ once: true }}
+        className="text-center text-gray-700 pt-4 border-t border-gray-300 text-sm"
+      >
+        <p className="mb-2">
+          © {new Date().getFullYear()} Methalodai Community. All rights
+          reserved.
+        </p>
+        <SocialLinks />
+        <div className="mt-4"></div>
+      </motion.footer>
     </div>
   );
 };
