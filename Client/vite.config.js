@@ -3,16 +3,24 @@ import react from "@vitejs/plugin-react";
 
 export default defineConfig({
   plugins: [react()],
-  define: {
-    "process.env": {},
-  },
   server: {
+    port: 5173,
+    open: true,
     proxy: {
       "/api": {
         target: "http://localhost:5000",
         changeOrigin: true,
         secure: false,
       },
+    },
+    fs: {
+      strict: true,
+    },
+  },
+  // 👇 Fix for React Router (instead of historyApiFallback)
+  build: {
+    rollupOptions: {
+      input: "index.html",
     },
   },
 });

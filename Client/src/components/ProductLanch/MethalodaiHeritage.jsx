@@ -1,6 +1,17 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
-import { FaQuoteLeft } from "react-icons/fa";
+import {
+  FaQuoteLeft,
+  FaUser,
+  FaEnvelope,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaGlobe,
+  FaWhatsapp,
+  FaLinkedin,
+  FaGithub,
+} from "react-icons/fa";
+import MineImg from "../../assets/Abishek S.jpeg";
 
 const fadeIn = {
   hidden: { opacity: 0, y: 50 },
@@ -14,6 +25,7 @@ const fadeIn = {
 const MethalodaiHeritage = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const [isFlipped, setIsFlipped] = useState(false);
 
   return (
     <motion.div
@@ -35,21 +47,123 @@ const MethalodaiHeritage = () => {
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -50 }}
           transition={{ duration: 0.7 }}
         >
-          <div className="rounded-2xl overflow-hidden shadow-2xl border-4 border-white max-w-xs transform hover:scale-105 transition-transform duration-300">
-            <div className="w-full h-72 bg-gradient-to-br from-blue-400 to-emerald-400 flex items-center justify-center text-white text-center p-4 relative">
-              <div className="absolute inset-0 bg-black/20"></div>
-              <p className="text-xl font-bold relative z-10 font-poppins">
-                Methalodai Community Heritage
-              </p>
-            </div>
-            <div className="bg-gradient-to-r from-blue-600 to-emerald-600 text-white text-center py-2">
-              <p className="text-sm font-medium font-poppins">
-                Methalodai Community
-              </p>
-              <p className="text-xs">Established 1950</p>
-            </div>
+          <div
+            className="w-72 h-96 perspective-1000 cursor-pointer"
+            onMouseEnter={() => setIsFlipped(true)}
+            onMouseLeave={() => setIsFlipped(false)}
+          >
+            <motion.div
+              className="relative w-full h-full preserve-3d transition-all duration-500"
+              animate={{ rotateY: isFlipped ? 180 : 0 }}
+            >
+              {/* Front of the card */}
+              <div className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden shadow-2xl border-4 border-white">
+                <div className="w-full h-full relative">
+                  <img
+                    src={MineImg}
+                    alt="Methalodai Heritage"
+                    className="w-full h-full object-cover"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex items-end">
+                    <div className="p-4 w-full">
+                      <h3 className="text-xl font-bold font-poppins mb-1 bg-gradient-to-r from-blue-400 to-green-500 bg-clip-text text-transparent">
+                        Methalodai Developer
+                      </h3>
+                      <p className="text-sm font-medium bg-gradient-to-r from-blue-300 to-green-600 bg-clip-text text-transparent">
+                        Methalodai Community
+                      </p>
+                      <p className="text-xs bg-gradient-to-r from-blue-300 to-green-700 bg-clip-text text-transparent">
+                        Established 2025
+                      </p>
+                      <p className="text-xs mt-2 opacity-80 bg-gradient-to-r from-blue-200 to-green-200 bg-clip-text text-transparent">
+                        Hover to connect with me
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Back of the card - Your details */}
+              <div className="absolute inset-0 backface-hidden rounded-2xl overflow-hidden shadow-2xl border-4 border-white bg-gradient-to-br from-blue-600 to-emerald-600 text-white rotate-y-180 p-6 flex flex-col justify-center">
+                <div className="text-center mb-4">
+                  <h3 className="text-2xl font-bold font-poppins mb-2">
+                    Abishek S
+                  </h3>
+                  <p className="text-blue-100 bg-white/10 py-1 px-3 rounded-full inline-block text-sm">
+                    Software Developer
+                  </p>
+                </div>
+
+                <div className="space-y-3 mb-4">
+                  <div className="flex items-center">
+                    <FaUser className="text-blue-200 mr-3 min-w-[16px]" />
+                    <span className="text-sm">Methalodai Community Admin</span>
+                  </div>
+
+                  <div className="flex items-center">
+                    <FaMapMarkerAlt className="text-blue-200 mr-3 min-w-[16px]" />
+                    <span className="text-sm">
+                      Methalodai, Ramanathapuram, Tamil Nadu
+                    </span>
+                  </div>
+
+                  <div className="flex items-center">
+                    <FaPhone className="text-blue-200 mr-3 min-w-[16px]" />
+                    <span className="text-sm">+91 7092085864</span>
+                  </div>
+                </div>
+
+                {/* Contact buttons */}
+                <div className="grid grid-cols-2 gap-2 mb-4">
+                  <a
+                    href="https://wa.me/917092085864"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="bg-green-500 hover:bg-green-600 text-white py-2 px-3 rounded-lg flex items-center justify-center text-sm transition-colors"
+                  >
+                    <FaWhatsapp className="mr-1" />
+                    WhatsApp
+                  </a>
+                  <a
+                    href="mailto:abishek.sathiyan.2002@gmail.com"
+                    className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-3 rounded-lg flex items-center justify-center text-sm transition-colors"
+                  >
+                    <FaEnvelope className="mr-1" />
+                    Email
+                  </a>
+                </div>
+
+                {/* Portfolio link */}
+                <a
+                  href="https://abishek-portfolio-front-end.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white/10 hover:bg-white/20 text-white py-2 px-3 rounded-lg flex items-center justify-center text-sm transition-colors mb-4"
+                >
+                  <FaGlobe className="mr-2" />
+                  View My Portfolio
+                </a>
+
+                {/* Social links */}
+                <div className="flex justify-center space-x-3">
+                  <a
+                    href="https://www.linkedin.com/in/abishek04"
+                    className="text-blue-200 hover:text-white transition-colors"
+                  >
+                    <FaLinkedin size={18} />
+                  </a>
+                  <a
+                    href="https://github.com/AbishekSathiyan"
+                    className="text-blue-200 hover:text-white transition-colors"
+                  >
+                    <FaGithub size={18} />
+                  </a>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </motion.div>
+
         <motion.div
           className="md:w-3/5 md:pl-12"
           initial={{ opacity: 0, x: 50 }}
@@ -87,6 +201,21 @@ const MethalodaiHeritage = () => {
           </motion.div>
         </motion.div>
       </div>
+
+      <style jsx>{`
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+        .preserve-3d {
+          transform-style: preserve-3d;
+        }
+        .backface-hidden {
+          backface-visibility: hidden;
+        }
+        .rotate-y-180 {
+          transform: rotateY(180deg);
+        }
+      `}</style>
     </motion.div>
   );
 };
