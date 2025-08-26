@@ -1,7 +1,9 @@
-// components/TabNavigation.js
+import MaintenanceMessage from "./MaintenanceMessage";
+
 const TabNavigation = ({ activeTab, setActiveTab }) => {
   return (
     <div className="border-b border-gray-200 bg-gray-50">
+      <MaintenanceMessage />
       <nav className="flex overflow-x-auto">
         <button
           onClick={() => setActiveTab("profile")}
@@ -15,7 +17,7 @@ const TabNavigation = ({ activeTab, setActiveTab }) => {
         </button>
         <button
           onClick={() => setActiveTab("settings")}
-          className={`px-6 py-4 text-center border-b-2 font-medium text-sm min-w-max ${
+          className={`px-6 py-4 text-center border-b-2 font-medium text-sm min极-w-max ${
             activeTab === "settings"
               ? "border-indigo-600 text-indigo-700 bg-white"
               : "border-transparent text-gray-500 hover:text-gray-700 hover:bg-gray-100"

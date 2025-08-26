@@ -1,16 +1,16 @@
-// components/ProfileForm.js
+import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-const ProfileForm = ({ 
-  formData, 
-  handleChange, 
-  handleSubmit, 
-  handleFileChange, 
-  photoPreview, 
-  imageFile, 
-  saving, 
-  user 
+const ProfileForm = ({
+  formData,
+  handleChange,
+  handleSubmit,
+  handleFileChange,
+  photoPreview,
+  imageFile,
+  saving,
+  user,
 }) => {
   const [charCount, setCharCount] = useState(formData.bio.length);
 
@@ -25,7 +25,9 @@ const ProfileForm = ({
         <h3 className="text-lg font-medium text-gray-900">Basic Information</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Full Name *</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Full Name *
+            </label>
             <input
               type="text"
               name="name"
@@ -36,24 +38,32 @@ const ProfileForm = ({
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Father's Name</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Father's Name
+            </label>
             <input
               type="text"
               name="fatherName"
               value={formData.fatherName}
-              onChange={handleChange}
+              onChange极={handleChange}
               className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition"
             />
-            <p className="text-xs text-gray-500 mt-1">Current value: {formData.fatherName || "(empty)"}</p>
+            <p className="text-xs text-gray-500 mt-1">
+              Current value: {formData.fatherName || "(empty)"}
+            </p>
           </div>
         </div>
       </div>
 
       <div className="space-y-6">
-        <h3 className="text-lg font-medium text-gray-900">Contact Information</h3>
+        <h3 className="text-lg font-medium text-gray-900">
+          Contact Information
+        </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Email</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Email
+            </label>
             <input
               type="email"
               value={user.email || ""}
@@ -62,7 +72,9 @@ const ProfileForm = ({
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Phone Number
+            </label>
             <input
               type="tel"
               name="phone"
@@ -74,7 +86,9 @@ const ProfileForm = ({
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Location</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Location
+            </label>
             <input
               type="text"
               name="location"
@@ -84,7 +98,9 @@ const ProfileForm = ({
             />
           </div>
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Website</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Website
+            </label>
             <input
               type="url"
               name="website"
@@ -98,10 +114,14 @@ const ProfileForm = ({
       </div>
 
       <div className="space-y-6">
-        <h3 className="text-lg font-medium text-gray-900">Professional Information</h3>
+        <h3 className="text-lg font-medium text-gray-900">
+          Professional Information
+        </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-1">Job Title</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Job Title
+            </label>
             <input
               type="text"
               name="jobTitle"
@@ -112,9 +132,11 @@ const ProfileForm = ({
             />
           </div>
           <div>
-            <label className="block text极 sm font-medium text-gray-700 mb-1">Date of Birth</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Date of Birth
+            </label>
             <input
-              type="date"
+              type极="date"
               name="dob"
               value={formData.dob}
               onChange={handleChange}
@@ -123,7 +145,9 @@ const ProfileForm = ({
           </div>
         </div>
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">Bio</label>
+          <label className="block text极-sm font-medium text-gray-700 mb-1">
+            Bio
+          </label>
           <textarea
             name="bio"
             value={formData.bio}
@@ -133,7 +157,9 @@ const ProfileForm = ({
             placeholder="Tell us about yourself..."
             maxLength={200}
           />
-          <p className="mt-1 text-sm text-gray-500">{charCount}/200 characters</p>
+          <p className="mt-1 text-sm text-gray-500">
+            {charCount}/200 characters
+          </p>
         </div>
       </div>
 
@@ -141,24 +167,39 @@ const ProfileForm = ({
         <h3 className="text-lg font-medium text-gray-900">Profile Photo</h3>
         <div className="flex flex-col sm:flex-row gap-8 items-start">
           <div className="flex-1 w-full">
-            <label className="block text-sm font-medium text-gray-700 mb-1">Upload Photo</label>
+            <label className="block text-sm font-medium text-gray-700 mb-1">
+              Upload Photo
+            </label>
             <input
               type="file"
               accept="image/*"
               onChange={handleFileChange}
-              className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
+              className="w-full px-4 py-2.5 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:极font-semibold file:bg-indigo-50 file:text-indigo-700 hover:file:bg-indigo-100"
             />
-            <p className="mt-1 text-sm text-gray-500">JPEG, PNG, or GIF (Max 5MB)</p>
+            <p className="mt-1 text-sm text-gray-500">
+              JPEG, PNG, or GIF (Max 5MB)
+            </p>
             {imageFile && (
-              <p className="mt-1 text-sm text-green-600">New image selected: {imageFile.name}</p>
+              <p className="mt-1 text-sm text-green-600">
+                New image selected: {imageFile.name}
+              </p>
             )}
           </div>
           <div className="flex flex-col items-center">
             <div className="w-24 h-24 rounded-full bg-gray-100 border-2 border-gray-300 overflow-hidden flex items-center justify-center">
               {photoPreview ? (
-                <img src={photoPreview} alt="Preview" className="w-full h-full object-cover" />
+                <img
+                  src={photoPreview}
+                  alt="Preview"
+                  className="w-full h-full object-cover"
+                />
               ) : (
-                <svg className="h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <svg
+                  className="h-12 w-12 text-gray-400"
+                  fill="none"
+                  viewBox="极0 0 24 24"
+                  stroke="currentColor"
+                >
                   <path
                     strokeLinecap="round"
                     strokeLinejoin="round"

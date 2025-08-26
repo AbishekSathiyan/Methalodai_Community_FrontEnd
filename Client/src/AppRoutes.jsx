@@ -25,7 +25,7 @@ export default function AppRoutes() {
         path="/"
         element={
           <PublicRoute>
-            <ProductLaunch />
+            <Home />
           </PublicRoute>
         }
       />
@@ -33,7 +33,7 @@ export default function AppRoutes() {
         path="/home"
         element={
           <PublicRoute>
-            <ProductLaunch />
+            <Home />
           </PublicRoute>
         }
       />
@@ -130,19 +130,10 @@ export default function AppRoutes() {
         }
       />
 
-      <Route
-        path="*"
-        element={
-          <PublicRoute>
-            <ProductLaunch />
-          </PublicRoute>
-        }
-      />
-
       {/* 404 */}
       <Route path="*" element={<NotFound />} />
 
-      <Route path="*" element={<ProductLaunch />} />
+      {/*<Route path="*" element={<ProductLaunch />} /> */}
     </Routes>
   );
 }

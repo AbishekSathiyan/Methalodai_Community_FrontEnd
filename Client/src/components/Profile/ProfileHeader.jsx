@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import { auth } from "../../config/firebase";
 import axios from "axios";
 import { API } from "../../config/api";
-
-// Import the default image correctly
 import DefaultProfileImg from "../../assets/Kamarajar(3).jpeg";
 
 const ProfileHeader = () => {
@@ -24,7 +22,6 @@ const ProfileHeader = () => {
         return;
       }
 
-      // ✅ Get a fresh ID token from Firebase
       const token = await user.getIdToken(true);
 
       const res = await axios.get(API.auth.profile, {
@@ -34,7 +31,6 @@ const ProfileHeader = () => {
         },
       });
 
-      // Handle different possible response structures
       const profileData = res.data?.user || res.data?.profile || res.data;
       setProfile(profileData);
     } catch (err) {
@@ -57,7 +53,6 @@ const ProfileHeader = () => {
   useEffect(() => {
     fetchProfile();
 
-    // Refresh profile if auth state changes
     const unsubscribe = auth.onAuthStateChanged(() => {
       fetchProfile();
     });
@@ -65,7 +60,6 @@ const ProfileHeader = () => {
     return () => unsubscribe();
   }, []);
 
-  // Skeleton loading component
   if (loading) return <ProfileSkeleton />;
 
   if (error)
@@ -84,7 +78,7 @@ const ProfileHeader = () => {
 
   if (!profile)
     return (
-      <div className="flex flex-col items-center justify-center p-10 bg-white rounded-xl shadow-md text-center max-w-2xl mx-auto">
+      <div className="flex flex-col items-center justify-center p-极10 bg-white rounded-xl shadow-md text-center max-w-2xl mx-auto">
         <p className="text-gray-700 mb-4">No profile data available</p>
         <button
           onClick={fetchProfile}
@@ -97,11 +91,9 @@ const ProfileHeader = () => {
 
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden max-w-2xl mx-auto">
-      {/* Header background */}
       <div className="h-32 bg-gradient-to-r from-blue-500 to-purple-600"></div>
 
       <div className="px-6 pb-6 relative -mt-16">
-        {/* Avatar section */}
         <div className="flex flex-col items-center mb-4">
           <div className="relative">
             <img
@@ -109,7 +101,6 @@ const ProfileHeader = () => {
               alt={profile.name || "Profile"}
               className="w-32 h-32 rounded-full border-4 border-white shadow-lg object-cover"
               onError={(e) => {
-                // If the image fails to load, use the default image
                 e.target.src = DefaultProfileImg;
               }}
             />
@@ -117,7 +108,6 @@ const ProfileHeader = () => {
           </div>
         </div>
 
-        {/* Profile info */}
         <div className="text-center mb-6">
           <h1 className="text-2xl font-bold text-gray-800 mb-2">
             {profile.name || profile.displayName || "Unknown User"}
@@ -151,7 +141,6 @@ const ProfileHeader = () => {
           )}
         </div>
 
-        {/* Stats section */}
         <div className="flex justify-center border-t border-gray-100 pt-4">
           <div className="flex space-x-6">
             <div className="text-center">
@@ -173,20 +162,16 @@ const ProfileHeader = () => {
   );
 };
 
-// Skeleton loading component
 const ProfileSkeleton = () => {
   return (
     <div className="bg-white rounded-xl shadow-md overflow-hidden max-w-2xl mx-auto animate-pulse">
-      {/* Header background skeleton */}
       <div className="h-32 bg-gray-300"></div>
 
       <div className="px-6 pb-6 relative -mt-16">
-        {/* Avatar skeleton */}
         <div className="flex flex-col items-center mb-4">
           <div className="w-32 h-32 rounded-full border-4 border-white bg-gray-300 shadow-lg"></div>
         </div>
 
-        {/* Profile info skeleton */}
         <div className="text-center mb-6 space-y-3">
           <div className="h-7 bg-gray-300 rounded mx-auto w-3/5"></div>
           <div className="h-4 bg-gray-300 rounded mx-auto w-2/5"></div>
@@ -195,7 +180,6 @@ const ProfileSkeleton = () => {
           <div className="h-16 bg-gray-300 rounded-lg mt-3 mx-auto w-full"></div>
         </div>
 
-        {/* Stats skeleton */}
         <div className="flex justify-center border-t border-gray-100 pt-4">
           <div className="flex space-x-6">
             {[1, 2, 3].map((item) => (

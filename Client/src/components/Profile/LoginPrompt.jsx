@@ -1,4 +1,3 @@
-// components/LoginPrompt.js
 import { Link } from "react-router-dom";
 
 const LoginPrompt = () => {
